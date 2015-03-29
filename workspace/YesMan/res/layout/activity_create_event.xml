@@ -1,0 +1,80 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create an event here" />
+
+    <EditText
+        android:id="@+id/etEventId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/textView2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="30dp"
+        android:ems="10"
+        android:hint="Enter Event ID" />
+
+    <Button
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="50dp"
+        android:onClick="SubmitEvent"
+        android:text="Submit" />
+
+    <EditText
+        android:id="@+id/etEventName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etEventId"
+        android:layout_below="@+id/etEventId"
+        android:layout_marginTop="29dp"
+        android:ems="10"
+        android:hint="Enter Event Name" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/etStartDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etPlace"
+        android:layout_below="@+id/etPlace"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Enter Date"
+        android:inputType="date" />
+
+    <EditText
+        android:id="@+id/etPlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etEventName"
+        android:layout_below="@+id/etEventName"
+        android:layout_marginTop="17dp"
+        android:ems="10"
+        android:hint="Place" />
+
+    <EditText
+        android:id="@+id/etTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/etStartDate"
+        android:layout_below="@+id/etStartDate"
+        android:layout_marginTop="26dp"
+        android:ems="10"
+        android:hint="Enter Time"
+        android:inputType="time" />
+    
+</RelativeLayout>
