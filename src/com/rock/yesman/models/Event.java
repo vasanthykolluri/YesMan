@@ -2,6 +2,8 @@ package com.rock.yesman.models;
 
 import java.util.Date;
 
+import android.text.format.Time;
+
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
@@ -12,11 +14,12 @@ public class Event extends ParseObject {
 		super();
 	}
 
-	public Event(String eventId, String name, Date startDate, String place) {
+	public Event(String eventId, String name, Date startDate, String place, Time time) {
 		put("eventId", eventId);
 		put("name", name);
 		put("startDate", startDate);
 		put("place", place);
+		put("time", time);
 	}
 
 	public String getObjectId() {
@@ -48,5 +51,9 @@ public class Event extends ParseObject {
 	public Date getUpdatedAt() {
 		// TODO Auto-generated method stub
 		return getDate("updatedAt");
+	}
+	
+	public String getEventTime() {
+		return getString("time");
 	}
 }
