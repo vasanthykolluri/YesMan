@@ -9,4 +9,15 @@
         android:layout_height="wrap_content"
         android:text="Display list of events here" />
 
+    <Button
+        android:id="@+id/btnCreateEvent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="78dp"
+        android:onClick="CreateEvent"
+        android:text="Create Event" />
+
 </RelativeLayout>

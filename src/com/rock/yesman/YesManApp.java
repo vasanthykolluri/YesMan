@@ -7,7 +7,6 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
-import com.parse.ParseObject;
 
 public class YesManApp  extends com.activeandroid.app.Application {
 
