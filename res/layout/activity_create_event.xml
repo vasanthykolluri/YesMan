@@ -55,22 +55,23 @@
         android:text="Submit" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/btnTimePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/etPlace"
         android:layout_below="@+id/etPlace"
         android:layout_marginTop="34dp"
         android:onClick="showTimePickerDialog"
-        android:text="@string/Time" />
+        android:text="@string/PickTime" />
 
     <Button
+        android:id="@+id/btnDatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button1"
-        android:layout_below="@+id/button1"
-        android:layout_marginTop="21dp"
+        android:layout_alignLeft="@+id/btnTimePicker"
+        android:layout_below="@+id/btnTimePicker"
+        android:layout_marginTop="28dp"
         android:onClick="showDatePickerDialog"
-        android:text="@string/Date" />
+        android:text="@string/PickDate" />
 
 </RelativeLayout>
