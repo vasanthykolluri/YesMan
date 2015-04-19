@@ -4,5 +4,10 @@
     <string name="app_name">YesMan</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_create_event">CreateEventActivity</string>
+    <string name="Pick_Time"></string>
+    <string name="Time">Time</string>
+    <string name="Date">Date</string>
+    <string name="PickTime">PickTime</string>
+    <string name="PickDate">PickDate</string>
 
 </resources>

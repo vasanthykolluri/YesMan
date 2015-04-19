@@ -2,18 +2,19 @@ package com.rock.yesman;
 
 import java.util.Date;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.text.format.Time;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.TimePicker;
 
 import com.parse.Parse;
+import com.rock.yesman.fragments.DatePickerFragment;
+import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
 
-public class CreateEventActivity extends Activity {
+public class CreateEventActivity extends FragmentActivity  {
 
 	private EditText etEventId;
 	private EditText etEventName;
@@ -30,12 +31,22 @@ public class CreateEventActivity extends Activity {
 		setContentView(R.layout.activity_create_event);
 		etEventId = (EditText) findViewById(R.id.etEventId);
 		etEventName = (EditText) findViewById(R.id.etEventName);
-		etStartDate = (EditText) findViewById(R.id.etStartDate);
+//		etStartDate = (EditText) findViewById(R.id.etStartDate);
 		etPlace = (EditText) findViewById(R.id.etPlace);
-		etTime = (EditText) findViewById(R.id.etTime);
+//		etTime = (EditText) findViewById(R.id.etTime);
 
 	}
 
+	public void showTimePickerDialog(View v) {
+	    DialogFragment newFragment = new TimePickerFragment();
+	    newFragment.show(getSupportFragmentManager(), "timePicker");
+	}
+	
+	public void showDatePickerDialog(View v) {
+	    DialogFragment newFragment = new DatePickerFragment();
+	    newFragment.show(getSupportFragmentManager(), "datePicker");
+	}
+	
 	public void SubmitEvent(View v) {
 
 		String eventId = etEventId.getText().toString();
