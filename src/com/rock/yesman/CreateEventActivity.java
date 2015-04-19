@@ -1,11 +1,13 @@
 package com.rock.yesman;
 
+import java.util.Currency;
 import java.util.Date;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -13,6 +15,7 @@ import com.parse.Parse;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
+import android.util.Log;
 
 public class CreateEventActivity extends FragmentActivity  {
 
@@ -26,7 +29,7 @@ public class CreateEventActivity extends FragmentActivity  {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		Parse.enableLocalDatastore(this);
+		//Parse.enableLocalDatastore(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_event);
 		etEventId = (EditText) findViewById(R.id.etEventId);
@@ -51,12 +54,22 @@ public class CreateEventActivity extends FragmentActivity  {
 
 		String eventId = etEventId.getText().toString();
 		String eventName = etEventName.getText().toString();
-		Date startDate = (Date) etStartDate.getText();
+		// Date startDate = (Date) etStartDate.getText();
+
+		Date startDate = new Date(System.currentTimeMillis());
+
 		String place = etPlace.getText().toString();
-		Time time = (Time) etTime.getText();
-		Event newevent = new Event(eventId, eventName, startDate, place, time);
-		newevent.put(eventName, newevent);
+		
+		// Time time = (Time) etTime.getText();
+		Time startTime = new Time();
+		startTime.setToNow();
+
+		Event newevent = new Event(eventId, eventName, place, startDate, startTime);
+		//newevent.put(eventName, newevent);
+
+		Log.d("VK", "Created new event");
 		newevent.saveInBackground();
+		Log.d("VK","saved event");
 		setResult(RESULT_CODE);
 		finish();
 	}

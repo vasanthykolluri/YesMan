@@ -14,12 +14,12 @@ public class Event extends ParseObject {
 		super();
 	}
 
-	public Event(String eventId, String name, Date startDate, String place, Time time) {
+	public Event(String eventId, String name, String place,  Date startDate, Time time) {
 		put("eventId", eventId);
 		put("name", name);
 		put("startDate", startDate);
 		put("place", place);
-		put("time", time);
+		//put("time", time);
 	}
 
 	public String getObjectId() {
@@ -53,7 +53,7 @@ public class Event extends ParseObject {
 		return getDate("updatedAt");
 	}
 	
-	public String getEventTime() {
-		return getString("time");
-	}
+//	public String getEventTime() {
+//		return getString("time");
+//	}
 }
