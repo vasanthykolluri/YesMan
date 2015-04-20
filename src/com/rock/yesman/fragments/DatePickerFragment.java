@@ -2,6 +2,8 @@ package com.rock.yesman.fragments;
 
 import java.util.Calendar;
 
+import com.rock.yesman.MyDialogFragmentListener;
+
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
@@ -9,6 +11,11 @@ import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
 public class DatePickerFragment extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+	
+	private String year;
+	private String month;
+	private String day;
+	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         // Use the current date as the default date in the picker
@@ -22,7 +29,12 @@ public class DatePickerFragment extends DialogFragment implements DatePickerDial
     }
 
     public void onDateSet(DatePicker view, int year, int month, int day) {
-        // Do something with the date chosen by the user
+    	MyDialogFragmentListener activity = (MyDialogFragmentListener) getActivity();
+    	this.year = String.valueOf(year);
+    	this.month = String.valueOf(month);
+    	this.day = String.valueOf(day);
+    	activity.onReturnDate(this.month + "/" + this.day + "/" + this.year);
+    	
     }
 
 }
