@@ -74,4 +74,22 @@
         android:onClick="showDatePickerDialog"
         android:text="@string/PickDate" />
 
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnDatePicker"
+        android:layout_alignBottom="@+id/btnDatePicker"
+        android:layout_alignLeft="@+id/tvTime"
+        android:text="Choose a Date" />
+
+    <TextView
+        android:id="@+id/tvTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/btnTimePicker"
+        android:layout_alignBottom="@+id/btnTimePicker"
+        android:layout_alignRight="@+id/etPlace"
+        android:text="Choose a Time" />
+
 </RelativeLayout>

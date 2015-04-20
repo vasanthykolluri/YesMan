@@ -2,14 +2,20 @@ package com.rock.yesman.fragments;
 
 import java.util.Calendar;
 
+import com.rock.yesman.MyDialogFragmentListener;
 import android.app.Dialog;
-import android.support.v4.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
+import android.support.v7.appcompat.R;
 import android.text.format.DateFormat;
+import android.widget.EditText;
 import android.widget.TimePicker;
 
 public class TimePickerFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener{
+	
+	private String hourOfDay;
+	private String minute;
 	
 	@Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -23,8 +29,13 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
                 DateFormat.is24HourFormat(getActivity()));
     }
 
+	
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         // Do something with the time chosen by the user
+    	MyDialogFragmentListener activity = (MyDialogFragmentListener) getActivity();
+    	this.hourOfDay = String.valueOf(hourOfDay);
+    	this.minute = String.valueOf(minute);
+    	activity.onReturnTime(this.hourOfDay + ":" + this.minute);
     }
 
 }

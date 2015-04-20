@@ -1,6 +1,5 @@
 package com.rock.yesman;
 
-import java.util.Currency;
 import java.util.Date;
 
 import android.os.Bundle;
@@ -10,46 +9,57 @@ import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
+import com.rock.yesman.MyDialogFragmentListener;
 
-import com.parse.Parse;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
-import android.util.Log;
 
-public class CreateEventActivity extends FragmentActivity  {
+public class CreateEventActivity extends FragmentActivity implements
+		MyDialogFragmentListener {
 
 	private EditText etEventId;
 	private EditText etEventName;
-	private EditText etStartDate;
 	private EditText etPlace;
-	private EditText etTime;
+	private TextView tvTime;
+	private TextView tvDate;
 
 	private final int RESULT_CODE = 20;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		//Parse.enableLocalDatastore(this);
+		// Parse.enableLocalDatastore(this);
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_create_event);
 		etEventId = (EditText) findViewById(R.id.etEventId);
 		etEventName = (EditText) findViewById(R.id.etEventName);
-//		etStartDate = (EditText) findViewById(R.id.etStartDate);
 		etPlace = (EditText) findViewById(R.id.etPlace);
-//		etTime = (EditText) findViewById(R.id.etTime);
+		tvTime = (TextView) findViewById(R.id.tvTime);
+		tvDate = (TextView) findViewById(R.id.tvDate);
 
 	}
 
 	public void showTimePickerDialog(View v) {
-	    DialogFragment newFragment = new TimePickerFragment();
-	    newFragment.show(getSupportFragmentManager(), "timePicker");
+		DialogFragment newFragment = new TimePickerFragment();
+		newFragment.show(getSupportFragmentManager(), "timePicker");
 	}
-	
+
 	public void showDatePickerDialog(View v) {
-	    DialogFragment newFragment = new DatePickerFragment();
-	    newFragment.show(getSupportFragmentManager(), "datePicker");
+		DialogFragment newFragment = new DatePickerFragment();
+		newFragment.show(getSupportFragmentManager(), "datePicker");
 	}
-	
+
+	public void onReturnTime(String Time) {
+		// Log.i("onReturnValue", "Got value " + foo + " back from Dialog!");
+		tvTime.setText(Time);
+	}
+
+	public void onReturnDate(String Date) {
+		// Log.i("onReturnValue", "Got value " + foo + " back from Dialog!");
+		tvDate.setText(Date);
+	}
+
 	public void SubmitEvent(View v) {
 
 		String eventId = etEventId.getText().toString();
@@ -59,17 +69,18 @@ public class CreateEventActivity extends FragmentActivity  {
 		Date startDate = new Date(System.currentTimeMillis());
 
 		String place = etPlace.getText().toString();
-		
+
 		// Time time = (Time) etTime.getText();
 		Time startTime = new Time();
 		startTime.setToNow();
 
-		Event newevent = new Event(eventId, eventName, place, startDate, startTime);
-		//newevent.put(eventName, newevent);
+		Event newevent = new Event(eventId, eventName, place, startDate,
+				startTime);
+		// newevent.put(eventName, newevent);
 
 		Log.d("VK", "Created new event");
 		newevent.saveInBackground();
-		Log.d("VK","saved event");
+		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
 		finish();
 	}
