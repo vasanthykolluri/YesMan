@@ -18,6 +18,8 @@ import com.rock.yesman.networking.MyUtils;
 public class YesManApp  extends com.activeandroid.app.Application {
 
 	private static Context context;
+	ParseInstallation parseInstallation;
+	
 	//private static User owner;
 	//private static ParseClient parseClient;
 
@@ -65,8 +67,7 @@ public class YesManApp  extends com.activeandroid.app.Application {
 				"rq5esmKjCAfwrmApLATvQnNu67w5PFmYcbB4KAla");
 		Log.d("VK", "YesManApp: Parse init done");
 
-		ParseInstallation parseInstallation = ParseInstallation
-				.getCurrentInstallation();
+		setParseInstallation();
 		setAppOwner();
 		parseInstallation.saveInBackground();
 	}
@@ -78,6 +79,14 @@ public class YesManApp  extends com.activeandroid.app.Application {
 //	public static User getAppOwner() {
 //		return owner;
 //	}
+	
+	private void setParseInstallation() {
+		this.parseInstallation = ParseInstallation
+				.getCurrentInstallation();	}
+	
+	private ParseInstallation getParseInstallation() {
+		return parseInstallation;
+	}
 	
 	private void setAppOwner() {
 		Log.d("VK", "YesManApp: Set App Owner");
