@@ -67,8 +67,8 @@ public class YesManApp  extends com.activeandroid.app.Application {
 
 		ParseInstallation parseInstallation = ParseInstallation
 				.getCurrentInstallation();
-		parseInstallation.saveInBackground();
 		setAppOwner();
+		parseInstallation.saveInBackground();
 	}
 
 //	public static ParseClient getParseClient() {
@@ -80,9 +80,9 @@ public class YesManApp  extends com.activeandroid.app.Application {
 //	}
 	
 	private void setAppOwner() {
-		
-					ParseInstallation.getCurrentInstallation().put("username", userName);
-					
+		Log.d("VK", "YesManApp: Set App Owner");
+
+					ParseInstallation.getCurrentInstallation().put("userName", userName);					
 					// Subscribe to receiving on specific channels
 //					PushService.subscribe(context,
 //							MyUtils.getChannelName(userId),
