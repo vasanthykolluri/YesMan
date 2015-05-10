@@ -1,8 +1,9 @@
 package com.rock.yesman;
 
+import java.sql.Date;
+
 import android.content.Context;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -10,7 +11,9 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.PushService;
 import com.rock.yesman.models.Event;
+import com.rock.yesman.networking.MyUtils;
 
 public class YesManApp  extends com.activeandroid.app.Application {
 
@@ -53,6 +56,7 @@ public class YesManApp  extends com.activeandroid.app.Application {
 		
 		// Register your parse models
 	    ParseObject.registerSubclass(Event.class);
+	    //ParseObject.registerSubclass(Date.class);
 	    
 		Log.d("VK", "YesManApp: Registered Event Class");
 	    
@@ -63,6 +67,8 @@ public class YesManApp  extends com.activeandroid.app.Application {
 
 		ParseInstallation parseInstallation = ParseInstallation
 				.getCurrentInstallation();
+		parseInstallation.saveInBackground();
+		setAppOwner();
 	}
 
 //	public static ParseClient getParseClient() {
@@ -72,4 +78,15 @@ public class YesManApp  extends com.activeandroid.app.Application {
 //	public static User getAppOwner() {
 //		return owner;
 //	}
+	
+	private void setAppOwner() {
+		
+					ParseInstallation.getCurrentInstallation().put("username", userName);
+					
+					// Subscribe to receiving on specific channels
+//					PushService.subscribe(context,
+//							MyUtils.getChannelName(userId),
+//							PhotosActivity.class);
+	}
 }
+
