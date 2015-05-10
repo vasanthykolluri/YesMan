@@ -1,16 +1,19 @@
 package com.rock.yesman;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.zip.DataFormatException;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
+import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.rock.yesman.MyDialogFragmentListener;
 
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
@@ -65,8 +68,17 @@ public class CreateEventActivity extends FragmentActivity implements
 		String eventId = etEventId.getText().toString();
 		String eventName = etEventName.getText().toString();
 		// Date startDate = (Date) etStartDate.getText();
-
-		Date startDate = new Date(System.currentTimeMillis());
+		String datepick = (String) tvDate.getText();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Date startDate = null;
+		try {
+			startDate = dateFormat.parse(datepick);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Date d = new Date(System.currentTimeMillis());
 
 		String place = etPlace.getText().toString();
 
@@ -74,7 +86,7 @@ public class CreateEventActivity extends FragmentActivity implements
 		Time startTime = new Time();
 		startTime.setToNow();
 
-		Event newevent = new Event(eventId, eventName, place, startDate,
+		Event newevent = new Event(eventId, eventName, place, d,
 				startTime);
 		// newevent.put(eventName, newevent);
 
