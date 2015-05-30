@@ -5,7 +5,6 @@ import java.sql.Date;
 import android.content.Context;
 import android.util.Log;
 
-import com.apps.flickit.PhotosActivity;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
