@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
+import com.rock.yesman.networking.MyCustomSender;
 
 public class CreateEventActivity extends FragmentActivity implements
 		MyDialogFragmentListener {
@@ -63,7 +64,7 @@ public class CreateEventActivity extends FragmentActivity implements
 		tvDate.setText(Date);
 	}
 
-	public void SubmitEvent(View v) {
+	public void submitEvent(View v) {
 
 		String eventId = etEventId.getText().toString();
 		String eventName = etEventName.getText().toString();
@@ -94,6 +95,11 @@ public class CreateEventActivity extends FragmentActivity implements
 		newevent.saveInBackground();
 		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
+		
+		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
+		MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "anirude", "Anirudh", eventId, eventName);
+		Log.d("VK", "Sent EVENT_ADD_REQ to friend");
+
 		finish();
 	}
 

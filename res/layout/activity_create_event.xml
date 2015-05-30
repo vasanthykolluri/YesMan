@@ -51,7 +51,7 @@
         android:layout_alignLeft="@+id/timePicker1"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="50dp"
-        android:onClick="SubmitEvent"
+        android:onClick="submitEvent"
         android:text="Submit" />
 
     <Button
