@@ -11,6 +11,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParseObject;
+import com.parse.ParsePush;
 import com.parse.PushService;
 import com.rock.yesman.models.Event;
 import com.rock.yesman.networking.MyUtils;
@@ -23,7 +24,7 @@ public class YesManApp  extends com.activeandroid.app.Application {
 	//private static User owner;
 	//private static ParseClient parseClient;
 
-	public static final String userName = "Vasanthy";
+	public static final String userName = "vasanthy";
 
 	@Override
 	public void onCreate() {
@@ -69,6 +70,8 @@ public class YesManApp  extends com.activeandroid.app.Application {
 
 		setParseInstallation();
 		setAppOwner();
+		ParsePush.subscribeInBackground(userName);
+
 		parseInstallation.saveInBackground();
 	}
 
