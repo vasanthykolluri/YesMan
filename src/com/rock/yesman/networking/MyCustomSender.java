@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.util.Log;
 
+import com.rock.yesman.YesManApp;
 import com.rock.yesman.models.EventAddReq;
 import com.rock.yesman.models.EventAddReqResp;
 import com.parse.ParseException;
@@ -43,6 +44,7 @@ public class MyCustomSender {
 
 				@Override
 				public void done(ParseException arg0) {
+					Log.d(TAG, "Sent EVENT_ADD_REQ in background");
 					// Toast.makeText(C(),
 					// "Sent GROUP_ADD_REQ", Toast.LENGTH_LONG).show();
 				}
