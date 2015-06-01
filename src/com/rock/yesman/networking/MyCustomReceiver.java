@@ -3,6 +3,7 @@ package com.rock.yesman.networking;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.parse.ParsePushBroadcastReceiver;
 import com.rock.yesman.YesManApp;
 import com.rock.yesman.HandleEventAddReqActivity;
 import com.rock.yesman.ShowEventAddReqResp;
@@ -15,7 +16,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MyCustomReceiver extends BroadcastReceiver {
+public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 	private static final String TAG = "MyCustomReceiver";
 
 	public static final String intentActionEventAddReq = "EVENT_ADD_REQ";
@@ -25,6 +26,7 @@ public class MyCustomReceiver extends BroadcastReceiver {
 	public void onReceive(Context context, Intent intent) {
 		Toast.makeText(context.getApplicationContext(),
 				"MyCustomReceiver - onReceive", Toast.LENGTH_LONG).show();
+		Log.d(TAG, "onReceive Entry");
 		try {
 			if (intent == null) {
 				Log.d(TAG, "Receiver intent null");

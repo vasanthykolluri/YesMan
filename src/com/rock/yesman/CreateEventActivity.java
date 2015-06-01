@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.ParsePush;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
@@ -97,7 +98,13 @@ public class CreateEventActivity extends FragmentActivity implements
 		setResult(RESULT_CODE);
 		
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "anirude", "Anirudh", eventId, eventName);
+		//MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "vasanthy", "Anirudh", eventId, eventName);
+
+		ParsePush push = new ParsePush();
+		push.setChannel(YesManApp.userName);
+		push.setMessage("Test message");
+		push.sendInBackground();
+		
 		Log.d("VK", "Sent EVENT_ADD_REQ to friend");
 
 		finish();

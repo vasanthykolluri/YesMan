@@ -49,7 +49,6 @@ public class YesManApp  extends com.activeandroid.app.Application {
 
 		registerParse();
 		Log.d("VK", "YesManApp: Registered Parse");
-		
 	}
 
 	private void registerParse() {
@@ -59,7 +58,6 @@ public class YesManApp  extends com.activeandroid.app.Application {
 		
 		// Register your parse models
 	    ParseObject.registerSubclass(Event.class);
-	    //ParseObject.registerSubclass(Date.class);
 	    
 		Log.d("VK", "YesManApp: Registered Event Class");
 	    
@@ -68,6 +66,8 @@ public class YesManApp  extends com.activeandroid.app.Application {
 				"rq5esmKjCAfwrmApLATvQnNu67w5PFmYcbB4KAla");
 		Log.d("VK", "YesManApp: Parse init done");
 
+		//PushService.setDefaultPushCallback(this, EventsListActivity.class);
+		
 		setParseInstallation();
 		setAppOwner();
 		ParsePush.subscribeInBackground(userName);
