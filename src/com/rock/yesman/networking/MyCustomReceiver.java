@@ -6,7 +6,7 @@ import org.json.JSONObject;
 import com.parse.ParsePushBroadcastReceiver;
 import com.rock.yesman.YesManApp;
 import com.rock.yesman.HandleEventAddReqActivity;
-import com.rock.yesman.ShowEventAddReqResp;
+import com.rock.yesman.ShowEventAddReqRespActivity;
 import com.rock.yesman.models.EventAddReq;
 import com.rock.yesman.models.EventAddReqResp;
 
@@ -22,10 +22,14 @@ public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 	public static final String intentActionEventAddReq = "EVENT_ADD_REQ";
 	public static final String intentActionEventAddReqResp = "EVENT_ADD_REQ_RESP";
 
+
+    @Override
+    public void onPushOpen(Context context, Intent intent) {
+		Log.d(TAG, "onPushOpen Entry");
+    }
+    
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Toast.makeText(context.getApplicationContext(),
-				"MyCustomReceiver - onReceive", Toast.LENGTH_LONG).show();
 		Log.d(TAG, "onReceive Entry");
 		try {
 			if (intent == null) {
@@ -33,6 +37,7 @@ public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 			} else {
 				String action = intent.getAction();
 				Log.d(TAG, "got action " + action);
+				Log.d(TAG, "context = " + context);
 				if (action.equals(intentActionEventAddReq)) {
 					String channel = intent.getExtras().getString(
 							"com.parse.Channel");
@@ -89,7 +94,7 @@ public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 //						}
 
 						Intent pupRespInt = new Intent(context,
-								ShowEventAddReqResp.class);
+								ShowEventAddReqRespActivity.class);
 						pupRespInt.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 						pupRespInt.putExtra("response",
 								eventAddReqResp.getResponse());
