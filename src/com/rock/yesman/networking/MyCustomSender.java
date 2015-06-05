@@ -32,23 +32,22 @@ public class MyCustomSender {
 			obj.put("eventAddReq", EventAddReq.toJson(eventAddReq));
 
 			ParsePush push = new ParsePush();
-			ParseQuery query = ParseInstallation.getQuery();
 
-			// Push the notification to Android users
+			// Push the notification to Android users on the required channel
+			ParseQuery query = ParseInstallation.getQuery();
 			query.whereEqualTo("deviceType", "android");
+			query.whereEqualTo("channels", MyUtils.getChannelName(receiverId));
 			push.setQuery(query);
+			
 			// Push the notification to a specific user's channel
-			push.setChannel(MyUtils.getChannelName(receiverId));
+			//push.setChannel(MyUtils.getChannelName(receiverId));
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
 				@Override
 				public void done(ParseException arg0) {
 					Log.d(TAG, "Sent EVENT_ADD_REQ in background");
-					// Toast.makeText(C(),
-					// "Sent GROUP_ADD_REQ", Toast.LENGTH_LONG).show();
 				}
-
 			});
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -74,7 +73,7 @@ public class MyCustomSender {
 					eventAddReq.getEventId(), eventAddReq.getEventName(),
 					response);
 			obj.put("alert",
-					"FlickIt! Response from " + eventAddReqResp.getSenderName());
+					"YesMan! Response from " + eventAddReqResp.getSenderName());
 			obj.put("eventAddReqResp", EventAddReqResp.toJson(eventAddReqResp));
 
 			Log.d(TAG, "Resp Sender" + eventAddReqResp.getSenderId() + " "
@@ -83,19 +82,23 @@ public class MyCustomSender {
 					+ eventAddReqResp.getReceiverName());
 
 			ParsePush push = new ParsePush();
+			
+			// Send response on sender's channel
 			ParseQuery query = ParseInstallation.getQuery();
 			query.whereEqualTo("deviceType", "android");
-			push.setQuery(query);
-			// Send response on sender's channel
-			push.setChannel(MyUtils.getChannelName(eventAddReqResp
+			query.whereEqualTo("channels", MyUtils.getChannelName(eventAddReqResp
 					.getReceiverId()));
+			push.setQuery(query);
+					
+			// Send response on sender's channel
+			//push.setChannel(MyUtils.getChannelName(eventAddReqResp
+					//.getReceiverId()));
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
 				@Override
 				public void done(ParseException arg0) {
-					// Toast.makeText(getApplicationContext(),
-					// "Done with sending", Toast.LENGTH_LONG).show();
+					Log.d(TAG, "Sent EVENT_ADD_REQ_RESP in background");
 				}
 			});
 		} catch (JSONException e) {

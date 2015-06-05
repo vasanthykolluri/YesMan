@@ -2,20 +2,26 @@ package com.rock.yesman;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.zip.DataFormatException;
+import java.util.LinkedList;
+import java.util.List;
+
+import org.json.JSONException;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentActivity;
-import android.text.format.DateFormat;
 import android.text.format.Time;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.parse.ParseInstallation;
 import com.parse.ParsePush;
+import com.parse.ParseQuery;
+import com.parse.SendCallback;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
@@ -79,7 +85,7 @@ public class CreateEventActivity extends FragmentActivity implements
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		Date d = new Date(System.currentTimeMillis());
 
 		String place = etPlace.getText().toString();
@@ -88,24 +94,17 @@ public class CreateEventActivity extends FragmentActivity implements
 		Time startTime = new Time();
 		startTime.setToNow();
 
-		Event newevent = new Event(eventId, eventName, place, d,
-				startTime);
+		Event newevent = new Event(eventId, eventName, place, d, startTime);
 		// newevent.put(eventName, newevent);
 
 		Log.d("VK", "Created new event");
 		newevent.saveInBackground();
 		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
-		
-		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		//MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "vasanthy", "Anirudh", eventId, eventName);
 
-		ParsePush push = new ParsePush();
-		push.setChannel(YesManApp.userName);
-		push.setMessage("Test message");
-		push.sendInBackground();
-		
-		Log.d("VK", "Sent EVENT_ADD_REQ to friend");
+		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
+		 MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "vasanthy",
+		 "Anirudh", eventId, eventName);
 
 		finish();
 	}

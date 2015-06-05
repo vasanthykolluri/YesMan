@@ -30,7 +30,7 @@ public class HandleEventAddReqActivity extends Activity implements OnClickListen
 				"eventAddReq");
 		String message = eventAddReq.getSenderName() + " wants to add you to event " + eventAddReq.getEventName();
 		
-		setTitle("FlickIt!");
+		setTitle("YesMan!");
 		tvEventAddReq.setText(message);
 		
 		accept = (Button) findViewById(R.id.btnAccept);

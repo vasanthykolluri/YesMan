@@ -8,7 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class ShowEventAddReqResp extends Activity implements OnClickListener {
+public class ShowEventAddReqRespActivity extends Activity implements OnClickListener {
 
 	TextView tvTrackReqResponse;
 	Button btnOK;
