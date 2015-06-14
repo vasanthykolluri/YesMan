@@ -9,5 +9,7 @@
     <string name="Date">Date</string>
     <string name="PickTime">PickTime</string>
     <string name="PickDate">PickDate</string>
+    <string name="title_activity_friends_list">FriendsListActivity</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

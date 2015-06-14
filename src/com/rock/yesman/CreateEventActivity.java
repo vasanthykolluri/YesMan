@@ -2,12 +2,7 @@ package com.rock.yesman;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.json.JSONException;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -18,10 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.parse.ParseInstallation;
-import com.parse.ParsePush;
-import com.parse.ParseQuery;
-import com.parse.SendCallback;
+import com.parse.SaveCallback;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
@@ -94,19 +86,31 @@ public class CreateEventActivity extends FragmentActivity implements
 		Time startTime = new Time();
 		startTime.setToNow();
 
-		Event newevent = new Event(eventId, eventName, place, d, startTime);
+		final Event newevent = new Event(eventId, eventName, place, d, startTime);
 		// newevent.put(eventName, newevent);
 
 		Log.d("VK", "Created new event");
-		newevent.saveInBackground();
+		newevent.saveInBackground(new SaveCallback() {
+			
+			@Override
+			public void done(com.parse.ParseException e) {
+				if (e == null) {
+                    // Saved successfully.
+                    Log.d("VK", "User update saved!");
+                    Log.d("VK", "The object id (from User) is: " + newevent.getObjectId());
+                } else {
+                    // The save failed.
+                    Log.d("VK", "User update error: " + e);
+                }				
+			}
+        });
 		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
 
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		 MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "vasanthy",
+		 MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "anirudh",
 		 "Anirudh", eventId, eventName);
 
 		finish();
 	}
-
 }
