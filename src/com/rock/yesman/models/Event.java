@@ -20,7 +20,6 @@ public class Event extends ParseObject {
 		put("name", name);
 		put("startDate", startDate);
 		put("place", place);
-		// put("time", time);
 	}
 
 	public String getEventId() {

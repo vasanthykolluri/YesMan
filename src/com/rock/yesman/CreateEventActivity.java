@@ -2,12 +2,7 @@ package com.rock.yesman;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.json.JSONException;
 
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -18,11 +13,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.parse.ParseInstallation;
-import com.parse.ParsePush;
-import com.parse.ParseQuery;
 import com.parse.SaveCallback;
-import com.parse.SendCallback;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
 import com.rock.yesman.models.Event;
@@ -120,6 +111,7 @@ public class CreateEventActivity extends FragmentActivity implements
 			}
 
 		});
+
 		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
 
@@ -127,7 +119,7 @@ public class CreateEventActivity extends FragmentActivity implements
 		MyCustomSender.sendEventAddReq("anirudh", "Anirudh", "anirudh",
 				"Anirudh", eventId, eventName, objectId);
 
+
 		finish();
 	}
-
 }
