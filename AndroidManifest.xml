@@ -90,6 +90,11 @@
                 <action android:name="EVENT_ADD_REQ_RESP" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".FriendsListActivity"
+            android:label="@string/title_activity_friends_list" >
+        </activity>
     </application>
 
 </manifest>

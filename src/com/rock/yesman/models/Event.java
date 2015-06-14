@@ -22,10 +22,6 @@ public class Event extends ParseObject {
 		//put("time", time);
 	}
 
-	public String getObjectId() {
-		return getString("objectId");
-	}
-
 	public String getEventId() {
 		return getString("eventId");
 	}
