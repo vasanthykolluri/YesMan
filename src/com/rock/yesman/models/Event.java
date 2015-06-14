@@ -14,16 +14,13 @@ public class Event extends ParseObject {
 		super();
 	}
 
-	public Event(String eventId, String name, String place,  Date startDate, Time time) {
+	public Event(String eventId, String name, String place, Date startDate,
+			Time time) {
 		put("eventId", eventId);
 		put("name", name);
 		put("startDate", startDate);
 		put("place", place);
-		//put("time", time);
-	}
-
-	public String getObjectId() {
-		return getString("objectId");
+		// put("time", time);
 	}
 
 	public String getEventId() {
@@ -52,8 +49,13 @@ public class Event extends ParseObject {
 		// TODO Auto-generated method stub
 		return getDate("updatedAt");
 	}
-	
-//	public String getEventTime() {
-//		return getString("time");
-//	}
+
+	/*
+	 * public String getAcceptedUser() { return getString("acceptedUser"); }
+	 * 
+	 * public String getDeclinedUser() { return getString("declinedUser"); }
+	 */
+	// public String getEventTime() {
+	// return getString("time");
+	// }
 }

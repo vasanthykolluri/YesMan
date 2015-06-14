@@ -1,16 +1,25 @@
 package com.rock.yesman;
 
+import java.util.List;
+
 import android.app.Activity;
+import android.net.ParseException;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.parse.FindCallback;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.rock.yesman.models.Event;
 import com.rock.yesman.models.EventAddReq;
 import com.rock.yesman.networking.MyCustomSender;
 
-public class HandleEventAddReqActivity extends Activity implements OnClickListener {
+public class HandleEventAddReqActivity extends Activity implements
+		OnClickListener {
 
 	Button accept;
 	Button decline;
@@ -28,11 +37,12 @@ public class HandleEventAddReqActivity extends Activity implements OnClickListen
 
 		eventAddReq = (EventAddReq) getIntent().getSerializableExtra(
 				"eventAddReq");
-		String message = eventAddReq.getSenderName() + " wants to add you to event " + eventAddReq.getEventName();
-		
+		String message = eventAddReq.getSenderName()
+				+ " wants to add you to event " + eventAddReq.getEventName();
+
 		setTitle("YesMan!");
 		tvEventAddReq.setText(message);
-		
+
 		accept = (Button) findViewById(R.id.btnAccept);
 		accept.setOnClickListener(this);
 		decline = (Button) findViewById(R.id.btnDecline);
@@ -43,11 +53,17 @@ public class HandleEventAddReqActivity extends Activity implements OnClickListen
 	public void onClick(View v) {
 		if (v.getId() == R.id.btnAccept) {
 			MyCustomSender.sendEventAddReqResp(eventAddReq, true);
-			// Add user to group in Parse db
-			//YesManApp.getParseClient().addUserGroup(eventAddReq.getReceiverId(), eventAddReq.getEventId());
-		} else if (v.getId() == R.id.btnDecline) {
+			// Event eventId = (Event) new ParseObject("Event");
+
+		}
+
+		// Add user to group in Parse db
+		// YesManApp.getParseClient().addUserGroup(eventAddReq.getReceiverId(),
+		// eventAddReq.getEventId());
+		else if (v.getId() == R.id.btnDecline) {
 			MyCustomSender.sendEventAddReqResp(eventAddReq, false);
 		}
+
 		finish();
 	}
 }

@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
 import com.parse.ParseQuery;
+import com.parse.SaveCallback;
 import com.parse.SendCallback;
 import com.rock.yesman.fragments.DatePickerFragment;
 import com.rock.yesman.fragments.TimePickerFragment;
@@ -35,6 +36,8 @@ public class CreateEventActivity extends FragmentActivity implements
 	private EditText etPlace;
 	private TextView tvTime;
 	private TextView tvDate;
+
+	private String objectId;
 
 	private final int RESULT_CODE = 20;
 
@@ -94,17 +97,35 @@ public class CreateEventActivity extends FragmentActivity implements
 		Time startTime = new Time();
 		startTime.setToNow();
 
-		Event newevent = new Event(eventId, eventName, place, d, startTime);
+		final Event newevent = new Event(eventId, eventName, place, d,
+				startTime);
 		// newevent.put(eventName, newevent);
 
 		Log.d("VK", "Created new event");
-		newevent.saveInBackground();
+		// newevent.saveInBackground();
+
+		newevent.saveInBackground(new SaveCallback() {
+			@Override
+			public void done(com.parse.ParseException e) {
+				// TODO Auto-generated method stub
+				if (e == null) {
+					Log.d("OBJECT ID RETRIEVED", "The object id is: "
+							+ newevent.getObjectId());
+					objectId = newevent.getObjectId();
+				} else {
+					// The save failed.
+					Log.d("No Obj ID", "User update error: " + e);
+				}
+
+			}
+
+		});
 		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
 
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		 MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "vasanthy",
-		 "Anirudh", eventId, eventName);
+		MyCustomSender.sendEventAddReq("anirudh", "Anirudh", "anirudh",
+				"Anirudh", eventId, eventName, objectId);
 
 		finish();
 	}
