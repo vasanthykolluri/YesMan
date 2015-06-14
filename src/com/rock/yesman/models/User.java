@@ -13,13 +13,13 @@ public class User implements Serializable {
 	public User(String userId) {
 		this.userId = userId;
 	}
-	
+
 	public User(String userId, String userName, String realName) {
 		this.userId = userId;
 		this.userName = userName;
 		this.realName = realName;
 	}
-	
+
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
@@ -27,14 +27,15 @@ public class User implements Serializable {
 	public String getUserId() {
 		return userId;
 	}
-	
+
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
-	
+
 	public String getUserName() {
 		return userName;
 	}
+
 	public String getRealName() {
 		return realName;
 	}
@@ -46,7 +47,7 @@ public class User implements Serializable {
 			user.userId = jsonObject.getString("userId");
 			user.userName = jsonObject.getString("userName");
 			user.realName = jsonObject.getString("realName");
-			
+
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
