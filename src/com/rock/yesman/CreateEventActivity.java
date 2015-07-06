@@ -28,6 +28,8 @@ public class CreateEventActivity extends FragmentActivity implements
 	private TextView tvTime;
 	private TextView tvDate;
 
+	private String objectId;
+
 	private final int RESULT_CODE = 20;
 
 	@Override
@@ -91,28 +93,31 @@ public class CreateEventActivity extends FragmentActivity implements
 		// newevent.put(eventName, newevent);
 
 		Log.d("VK", "Created new event");
-		newevent.saveInBackground(new SaveCallback() {
+		// newevent.saveInBackground();
 
+		newevent.saveInBackground(new SaveCallback() {
 			@Override
 			public void done(com.parse.ParseException e) {
+				// TODO Auto-generated method stub
 				if (e == null) {
-					// Saved successfully.
-					Log.d("VK", "User update saved!");
-					Log.d("VK",
-							"The object id (from User) is: "
-									+ newevent.getObjectId());
+					Log.d("OBJECT ID RETRIEVED", "The object id is: "
+							+ newevent.getObjectId());
+					objectId = newevent.getObjectId();
 				} else {
 					// The save failed.
-					Log.d("VK", "User update error: " + e);
+					Log.d("No Obj ID", "User update error: " + e);
 				}
+
 			}
+
 		});
+
 		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
 
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "vasanthy",
-				"Anirudh", eventId, eventName);
+		MyCustomSender.sendEventAddReq("anirudh", "Anirudh", "anirudh",
+				"Anirudh", eventId, eventName, objectId);
 
 		finish();
 	}

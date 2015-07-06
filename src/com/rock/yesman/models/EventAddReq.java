@@ -15,19 +15,22 @@ public class EventAddReq implements Serializable {
 	private String receiverName;
 	private String eventId;
 	private String eventName;
+	private String objectId;
 
 	public EventAddReq() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public EventAddReq(String senderId, String senderName, String receiverId,
-			String receiverName, String eventId, String eventName) {
+			String receiverName, String eventId, String eventName,
+			String objectId) {
 		this.senderId = senderId;
 		this.senderName = senderName;
 		this.receiverId = receiverId;
 		this.receiverName = receiverName;
 		this.eventId = eventId;
 		this.eventName = eventName;
+		this.objectId = objectId;
 	}
 
 	public String getSenderId() {
@@ -45,13 +48,17 @@ public class EventAddReq implements Serializable {
 	public String getReceiverName() {
 		return receiverName;
 	}
-	
+
 	public String getEventId() {
 		return eventId;
 	}
 
 	public String getEventName() {
 		return eventName;
+	}
+
+	public String getObjectId() {
+		return objectId;
 	}
 
 	public static EventAddReq fromJson(JSONObject jsonObject) {

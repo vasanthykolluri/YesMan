@@ -19,7 +19,7 @@ public class MyCustomSender {
 
 	public static void sendEventAddReq(String senderId, String senderName,
 			String receiverId, String receiverName, String eventId,
-			String eventName) {
+			String eventName, String objectId) {
 
 		JSONObject obj;
 		try {
@@ -28,9 +28,9 @@ public class MyCustomSender {
 					+ " here...");
 			obj.put("action", MyCustomReceiver.intentActionEventAddReq);
 			EventAddReq eventAddReq = new EventAddReq(senderId, senderName,
-					receiverId, receiverName, eventId, eventName);
+					receiverId, receiverName, eventId, eventName, objectId);
 			obj.put("eventAddReq", EventAddReq.toJson(eventAddReq));
-
+	
 			ParsePush push = new ParsePush();
 
 			// Push the notification to Android users on the required channel
