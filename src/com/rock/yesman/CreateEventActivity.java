@@ -117,6 +117,11 @@ public class CreateEventActivity extends FragmentActivity implements
 		setResult(RESULT_CODE);
 
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
+<<<<<<< HEAD
+=======
+		MyCustomSender.sendEventAddReq("anirudh", "Anirudh", "anirudh",
+				"Anirudh", eventId, eventName, objectId);
+>>>>>>> origin/master
 
 		finish();
 	}

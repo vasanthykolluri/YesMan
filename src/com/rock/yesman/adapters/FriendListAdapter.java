@@ -16,7 +16,6 @@ public class FriendListAdapter extends ArrayAdapter<Friend> {
 
 	public FriendListAdapter(Context context, List<Friend> friends) {
 		super(context, 0, friends);
-
 	}
 
 	@Override
