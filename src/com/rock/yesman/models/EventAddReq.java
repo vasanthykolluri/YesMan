@@ -71,6 +71,7 @@ public class EventAddReq implements Serializable {
 			eventAddReq.receiverName = jsonObject.getString("receiverName");
 			eventAddReq.eventId = jsonObject.getString("eventId");
 			eventAddReq.eventName = jsonObject.getString("eventName");
+			eventAddReq.objectId = jsonObject.getString("objectId");
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;
@@ -89,6 +90,7 @@ public class EventAddReq implements Serializable {
 			jsonObject.put("receiverName", eventAddReq.receiverName);
 			jsonObject.put("eventId", eventAddReq.eventId);
 			jsonObject.put("eventName", eventAddReq.eventName);
+			jsonObject.put("objectId", eventAddReq.objectId);
 		} catch (JSONException e) {
 			e.printStackTrace();
 			return null;

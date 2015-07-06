@@ -22,12 +22,11 @@ public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 	public static final String intentActionEventAddReq = "EVENT_ADD_REQ";
 	public static final String intentActionEventAddReqResp = "EVENT_ADD_REQ_RESP";
 
-
-    @Override
-    public void onPushOpen(Context context, Intent intent) {
+	@Override
+	public void onPushOpen(Context context, Intent intent) {
 		Log.d(TAG, "onPushOpen Entry");
-    }
-    
+	}
+
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		Log.d(TAG, "onReceive Entry");
@@ -42,7 +41,8 @@ public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 					String channel = intent.getExtras().getString(
 							"com.parse.Channel");
 					// Filter on user's channel
-					if (channel.equals(MyUtils.getChannelName(YesManApp.userName))) {
+					if (channel.equals(MyUtils
+							.getChannelName(YesManApp.userName))) {
 						JSONObject json = new JSONObject(intent.getExtras()
 								.getString("com.parse.Data"));
 
@@ -76,8 +76,8 @@ public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 					Log.d(TAG, "got action " + action + " on channel "
 							+ channel);
 					// Filter on user's channel
-					if (channel.equals(MyUtils.getChannelName(YesManApp
-							.userName))) {
+					if (channel.equals(MyUtils
+							.getChannelName(YesManApp.userName))) {
 
 						EventAddReqResp eventAddReqResp = EventAddReqResp
 								.fromJson(json.getJSONObject("eventAddReqResp"));
@@ -85,13 +85,13 @@ public class MyCustomReceiver extends ParsePushBroadcastReceiver {
 						// Handle push notification by invoking activity
 						// directly
 
-//						if (acceptFlag == true) {
-//							// Add buddy to db
-//							FlickrClientApp.getRestClient().addBuddy(
-//									buddyLocation.getName(),
-//									buddyLocation.getImgUrl(),
-//									buddyLocation.getCity());
-//						}
+						// if (acceptFlag == true) {
+						// // Add buddy to db
+						// FlickrClientApp.getRestClient().addBuddy(
+						// buddyLocation.getName(),
+						// buddyLocation.getImgUrl(),
+						// buddyLocation.getCity());
+						// }
 
 						Intent pupRespInt = new Intent(context,
 								ShowEventAddReqRespActivity.class);

@@ -1,9 +1,8 @@
 package com.rock.yesman;
 
-import java.util.List;
+import java.util.Arrays;
 
 import android.app.Activity;
-import android.net.ParseException;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,8 +10,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.parse.FindCallback;
-import com.parse.ParseObject;
+import com.parse.GetCallback;
+import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.rock.yesman.models.Event;
 import com.rock.yesman.models.EventAddReq;
@@ -53,8 +52,30 @@ public class HandleEventAddReqActivity extends Activity implements
 	public void onClick(View v) {
 		if (v.getId() == R.id.btnAccept) {
 			MyCustomSender.sendEventAddReqResp(eventAddReq, true);
-			// Event eventId = (Event) new ParseObject("Event");
+			ParseQuery<Event> query = ParseQuery.getQuery("Event");
+			query.getInBackground(eventAddReq.getObjectId(),
+					new GetCallback<Event>() {
 
+						@Override
+						public void done(Event event, ParseException e) {
+
+							// TODO Auto-generated method stub
+							if (e == null) {
+								event.add("acceptedUsers", Arrays
+										.asList(eventAddReq.getReceiverId()));
+								event.saveInBackground();
+
+							}
+
+							else {
+								String place = "FAIL";
+								Log.d("EVENT OBJ PLACE RETRIEVE",
+										"FAIL RETRIEVAL");
+							}
+
+						}
+
+					});
 		}
 
 		// Add user to group in Parse db
@@ -62,6 +83,30 @@ public class HandleEventAddReqActivity extends Activity implements
 		// eventAddReq.getEventId());
 		else if (v.getId() == R.id.btnDecline) {
 			MyCustomSender.sendEventAddReqResp(eventAddReq, false);
+			ParseQuery<Event> query = ParseQuery.getQuery("Event");
+			query.getInBackground(eventAddReq.getObjectId(),
+					new GetCallback<Event>() {
+
+						@Override
+						public void done(Event event, ParseException e) {
+
+							// TODO Auto-generated method stub
+							if (e == null) {
+								event.add("declinedUsers", Arrays
+										.asList(eventAddReq.getReceiverId()));
+								event.saveInBackground();
+							}
+
+							else {
+								String place = "FAIL";
+								Log.d("EVENT OBJ PLACE RETRIEVE",
+										"FAIL RETRIEVAL");
+							}
+
+						}
+
+					});
+
 		}
 
 		finish();

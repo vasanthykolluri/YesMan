@@ -22,13 +22,12 @@ import com.rock.yesman.networking.MyCustomSender;
 public class CreateEventActivity extends FragmentActivity implements
 		MyDialogFragmentListener {
 
+	private String objId;
 	private EditText etEventId;
 	private EditText etEventName;
 	private EditText etPlace;
 	private TextView tvTime;
 	private TextView tvDate;
-
-	private String objectId;
 
 	private final int RESULT_CODE = 20;
 
@@ -67,8 +66,8 @@ public class CreateEventActivity extends FragmentActivity implements
 
 	public void submitEvent(View v) {
 
-		String eventId = etEventId.getText().toString();
-		String eventName = etEventName.getText().toString();
+		final String eventId = etEventId.getText().toString();
+		final String eventName = etEventName.getText().toString();
 		// Date startDate = (Date) etStartDate.getText();
 		String datepick = (String) tvDate.getText();
 		SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
@@ -100,9 +99,11 @@ public class CreateEventActivity extends FragmentActivity implements
 			public void done(com.parse.ParseException e) {
 				// TODO Auto-generated method stub
 				if (e == null) {
-					Log.d("OBJECT ID RETRIEVED", "The object id is: "
-							+ newevent.getObjectId());
-					objectId = newevent.getObjectId();
+					objId = newevent.getObjectId();
+					Log.d("OBJECT ID RETRIEVED", "The object id is: " + objId);
+					MyCustomSender.sendEventAddReq("anirudh", "Anirudh",
+							"anirudh", "Anirudh", eventId, eventName, objId);
+
 				} else {
 					// The save failed.
 					Log.d("No Obj ID", "User update error: " + e);
@@ -116,9 +117,6 @@ public class CreateEventActivity extends FragmentActivity implements
 		setResult(RESULT_CODE);
 
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		MyCustomSender.sendEventAddReq("anirudh", "Anirudh", "anirudh",
-				"Anirudh", eventId, eventName, objectId);
-
 
 		finish();
 	}

@@ -30,7 +30,7 @@ public class MyCustomSender {
 			EventAddReq eventAddReq = new EventAddReq(senderId, senderName,
 					receiverId, receiverName, eventId, eventName, objectId);
 			obj.put("eventAddReq", EventAddReq.toJson(eventAddReq));
-	
+
 			ParsePush push = new ParsePush();
 
 			// Push the notification to Android users on the required channel
@@ -38,9 +38,9 @@ public class MyCustomSender {
 			query.whereEqualTo("deviceType", "android");
 			query.whereEqualTo("channels", MyUtils.getChannelName(receiverId));
 			push.setQuery(query);
-			
+
 			// Push the notification to a specific user's channel
-			//push.setChannel(MyUtils.getChannelName(receiverId));
+			// push.setChannel(MyUtils.getChannelName(receiverId));
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
@@ -82,17 +82,17 @@ public class MyCustomSender {
 					+ eventAddReqResp.getReceiverName());
 
 			ParsePush push = new ParsePush();
-			
+
 			// Send response on sender's channel
 			ParseQuery query = ParseInstallation.getQuery();
 			query.whereEqualTo("deviceType", "android");
-			query.whereEqualTo("channels", MyUtils.getChannelName(eventAddReqResp
-					.getReceiverId()));
+			query.whereEqualTo("channels",
+					MyUtils.getChannelName(eventAddReqResp.getReceiverId()));
 			push.setQuery(query);
-					
+
 			// Send response on sender's channel
-			//push.setChannel(MyUtils.getChannelName(eventAddReqResp
-					//.getReceiverId()));
+			// push.setChannel(MyUtils.getChannelName(eventAddReqResp
+			// .getReceiverId()));
 			push.setData(obj);
 			push.sendInBackground(new SendCallback() {
 
