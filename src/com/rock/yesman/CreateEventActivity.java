@@ -119,7 +119,6 @@ public class CreateEventActivity extends FragmentActivity implements
 		MyCustomSender.sendEventAddReq("anirudh", "Anirudh", "anirudh",
 				"Anirudh", eventId, eventName, objectId);
 
-
 		finish();
 	}
 }

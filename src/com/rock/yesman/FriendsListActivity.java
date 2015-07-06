@@ -17,7 +17,7 @@ public class FriendsListActivity extends Activity {
 
 	private FriendListAdapter aFriends;
 	private ListView lvFriends;
-	private ArrayList<Friend> friends;
+	private ArrayList<Friend> friendsList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,31 +28,26 @@ public class FriendsListActivity extends Activity {
 
 		Log.d("VK", "FriendsListActivity: Inflated xml");
 
-		friends = new ArrayList<Friend>();
-		aFriends = new FriendListAdapter(this, friends);
+		friendsList = new ArrayList<Friend>();
+		aFriends = new FriendListAdapter(this, friendsList);
 
 		lvFriends = (ListView) findViewById(R.id.lvFriendsList);
 		lvFriends.setAdapter(aFriends);
 
-		// ToDo: Remove hardcoded values
-		addMyFriends();
 		populateFriendsList();
 	}
 
 	private void populateFriendsList() {
-		//aFriends.clear();
 
-		aFriends.addAll(friends);
-	}
-
-	private void addMyFriends() {
+		// Clear the adapter
+		aFriends.clear();
+		
+		// ToDo: Remove hardcoded values
 		Friend f1 = new Friend("Prasanthi", "Relangi");
 		Friend f2 = new Friend("Jalaja", "Padma");
 		Friend f3 = new Friend("Anirudh", "Kasturi");
-		friends.add(f1);
-		friends.add(f2);
-		friends.add(f3);
-		Toast.makeText(getApplicationContext(), "Added Friends",
-				Toast.LENGTH_LONG);
+		aFriends.add(f1);
+		aFriends.add(f2);
+		aFriends.add(f3);
 	}
 }
