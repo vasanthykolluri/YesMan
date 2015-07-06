@@ -86,30 +86,33 @@ public class CreateEventActivity extends FragmentActivity implements
 		Time startTime = new Time();
 		startTime.setToNow();
 
-		final Event newevent = new Event(eventId, eventName, place, d, startTime);
+		final Event newevent = new Event(eventId, eventName, place, d,
+				startTime);
 		// newevent.put(eventName, newevent);
 
 		Log.d("VK", "Created new event");
 		newevent.saveInBackground(new SaveCallback() {
-			
+
 			@Override
 			public void done(com.parse.ParseException e) {
 				if (e == null) {
-                    // Saved successfully.
-                    Log.d("VK", "User update saved!");
-                    Log.d("VK", "The object id (from User) is: " + newevent.getObjectId());
-                } else {
-                    // The save failed.
-                    Log.d("VK", "User update error: " + e);
-                }				
+					// Saved successfully.
+					Log.d("VK", "User update saved!");
+					Log.d("VK",
+							"The object id (from User) is: "
+									+ newevent.getObjectId());
+				} else {
+					// The save failed.
+					Log.d("VK", "User update error: " + e);
+				}
 			}
-        });
+		});
 		Log.d("VK", "saved event");
 		setResult(RESULT_CODE);
 
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		 MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "anirudh",
-		 "Anirudh", eventId, eventName);
+		MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "vasanthy",
+				"Anirudh", eventId, eventName);
 
 		finish();
 	}
