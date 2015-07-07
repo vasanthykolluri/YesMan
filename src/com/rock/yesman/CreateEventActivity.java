@@ -42,7 +42,6 @@ public class CreateEventActivity extends FragmentActivity implements
 		etPlace = (EditText) findViewById(R.id.etPlace);
 		tvTime = (TextView) findViewById(R.id.tvTime);
 		tvDate = (TextView) findViewById(R.id.tvDate);
-
 	}
 
 	public void showTimePickerDialog(View v) {
@@ -107,7 +106,6 @@ public class CreateEventActivity extends FragmentActivity implements
 					// The save failed.
 					Log.d("No Obj ID", "User update error: " + e);
 				}
-
 			}
 
 		});
@@ -116,7 +114,7 @@ public class CreateEventActivity extends FragmentActivity implements
 		setResult(RESULT_CODE);
 
 		Log.d("VK", "Sending EVENT_ADD_REQ to friend");
-		MyCustomSender.sendEventAddReq("anirudh", "Anirudh", "anirudh",
+		MyCustomSender.sendEventAddReq("vasanthy", "Vasanthy", "anirudh",
 				"Anirudh", eventId, eventName, objectId);
 
 		finish();

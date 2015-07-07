@@ -24,7 +24,7 @@ public class YesManApp extends com.activeandroid.app.Application {
 	// private static User owner;
 	// private static ParseClient parseClient;
 
-	public static final String userName = "anirudh";
+	public static final String userName = "vasanthy";
 
 	@Override
 	public void onCreate() {
